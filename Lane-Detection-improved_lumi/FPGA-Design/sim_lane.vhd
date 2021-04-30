@@ -53,7 +53,7 @@ begin
   clk <= not clk after 5 ns;
 
 -- instantiation of design-under-verification
-  duv : entity work.lane
+  duv : entity work.lane_lumi_fix
     port map (clk       => clk,
               reset_n   => reset_n,
               enable_in => enable_in,

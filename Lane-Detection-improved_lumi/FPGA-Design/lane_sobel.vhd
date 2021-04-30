@@ -20,10 +20,10 @@ end lane_sobel;
 
 architecture behave of lane_sobel is
 
-
+  signal lum_out	: integer range 0 to 4095; 
   signal tap_lt, tap_ct, tap_rt,
          tap_lc, tap_cc, tap_rc,
-         tap_lb, tap_cb, tap_rb : std_logic_vector(23 downto 0);
+         tap_lb, tap_cb, tap_rb : integer range 0 to 4095;
             -- 3x3 image region
             --     Y->           (left)    (center)    (right)
             --   X      (top)    tap_lt     tap_ct     tap_rt
@@ -38,8 +38,13 @@ architecture behave of lane_sobel is
 
 begin
 
-  -- current input pixel is right-bottom (rb)
-  tap_rb <= data_in;
+  rgb2y_0 : entity work.rgb2y
+    port map (clk	=> clk,
+				  data_in => data_in,
+				  data_out => lum_out);
+  -- current input pixel is right-bottom (rb)				
+  tap_rb <= lum_out;
+
 
   -- two line memories: output is right-center (rc) and right-top (rt)
   mem_0 : entity work.lane_linemem

@@ -9,7 +9,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.NUMERIC_STD.all;
 
-entity lane is
+entity lane_lumi_fix is
   port (clk       : in  std_logic;                      -- input clock 74.25 MHz, video 720p
         reset_n   : in  std_logic;                      -- reset (invoked during configuration)
         enable_in : in  std_logic_vector(2 downto 0);   -- three slide switches
@@ -30,9 +30,9 @@ entity lane is
         --
         clk_o     : out std_logic;                      -- output clock (do not modify)
         led       : out std_logic_vector(2 downto 0));  -- not supported by remote lab
-end lane;
+end lane_lumi_fix;
 
-architecture behave of lane is
+architecture behave of lane_lumi_fix is
 
   -- input/output FFs
   signal reset            : std_logic;
