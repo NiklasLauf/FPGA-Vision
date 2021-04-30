@@ -5,6 +5,8 @@
 --
 -- FPGA Vision Remote Lab http://h-brs.de/fpga-vision-lab
 -- (c) Marco Winzker, Hochschule Bonn-Rhein-Sieg, 03.01.2018
+-- Version w/ sleep mode and adjusted for luminance calculation
+-- Version modified by Niklas Laufkoetter
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
@@ -20,10 +22,10 @@ end lane_sobel;
 
 architecture behave of lane_sobel is
 
-
+  signal lum_out	: integer range 0 to 4095; 
   signal tap_lt, tap_ct, tap_rt,
          tap_lc, tap_cc, tap_rc,
-         tap_lb, tap_cb, tap_rb : std_logic_vector(23 downto 0);
+         tap_lb, tap_cb, tap_rb : integer range 0 to 4095;
             -- 3x3 image region
             --     Y->           (left)    (center)    (right)
             --   X      (top)    tap_lt     tap_ct     tap_rt
@@ -39,7 +41,13 @@ architecture behave of lane_sobel is
 begin
 
   -- current input pixel is right-bottom (rb)
-  tap_rb <= data_in;
+  rgb2y_0 : entity work.rgb2y
+	port map (clk	=> clk,
+				 enable => de_in,
+				 data_in => data_in,
+				 data_out => lum_out);
+					
+	tap_rb <= lum_out;
 
   -- two line memories: output is right-center (rc) and right-top (rt)
   mem_0 : entity work.lane_linemem
@@ -57,21 +65,24 @@ begin
 
   process
   begin
-    wait until rising_edge(clk);
-    -- delay each line by two clock cycles:
-    --    previous value of right pixel is now center pixel
-    --    previous value of center pixel is now left pixel
-    tap_ct <= tap_rt;
-    tap_lt <= tap_ct;
-    tap_cc <= tap_rc;
-    tap_lc <= tap_cc;
-    tap_cb <= tap_rb;
-    tap_lb <= tap_cb;
+	 wait until rising_edge(clk);
+		if (de_in = '1') then
+			 -- delay each line by two clock cycles:
+			 --    previous value of right pixel is now center pixel
+			 --    previous value of center pixel is now left pixel
+				 tap_ct <= tap_rt;
+				 tap_lt <= tap_ct;
+				 tap_cc <= tap_rc;
+				 tap_lc <= tap_cc;
+				 tap_cb <= tap_rb;
+				 tap_lb <= tap_cb;
+	  end if;
   end process;
 
 -- horizontal and vertical sobel matrix and square of G
   g_x : entity work.lane_g_matrix
     port map (clk      => clk,
+				  enable   => de_in,
               reset    => reset,
               in_p1a   => tap_rt,
               in_p2    => tap_rc,
@@ -83,6 +94,7 @@ begin
 
   g_y : entity work.lane_g_matrix
     port map (clk      => clk,
+	 			  enable   => de_in,
               reset    => reset,
               in_p1a   => tap_lt,
               in_p2    => tap_ct,
@@ -93,18 +105,19 @@ begin
               data_out => g_y_2);
 
   process
-
   begin
     wait until rising_edge(clk);
-    -- adding the values of horizontal and vertical sobel matrix
-    g_sum_2 <= (g_x_2 + g_y_2)/8192;
+	 	if (de_in = '1') then
+		 -- adding the values of horizontal and vertical sobel matrix
+		 g_sum_2 <= (g_x_2 + g_y_2)/8192;
 
-    -- limiting and invoking ROM for square-root
-    if (g_sum_2 > 8191) then
-      g2_limit <= (others => '1');
-    else
-      g2_limit <= std_logic_vector(to_unsigned(g_sum_2, 13));
-    end if;
+		 -- limiting and invoking ROM for square-root
+		 if (g_sum_2 > 8191) then
+			g2_limit <= (others => '1');
+		 else
+			g2_limit <= std_logic_vector(to_unsigned(g_sum_2, 13));
+		 end if;
+	end if;
   end process;
 
   square_root : entity work.lane_g_root_IP  -- 255 minus square-root of 8*g_sum_2
@@ -116,3 +129,4 @@ begin
   data_out <= lum_new & lum_new & lum_new;
 
 end behave;
+

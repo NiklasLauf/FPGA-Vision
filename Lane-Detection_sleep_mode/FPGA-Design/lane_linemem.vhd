@@ -4,6 +4,8 @@
 --
 -- FPGA Vision Remote Lab http://h-brs.de/fpga-vision-lab
 -- (c) Marco Winzker, Hochschule Bonn-Rhein-Sieg, 03.01.2018
+-- Version w/ sleep mode and adjusted for luminance calculation
+-- Version modified by Niklas Laufkoetter
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
@@ -13,13 +15,13 @@ entity lane_linemem is
   port (clk      : in  std_logic;
         reset    : in  std_logic;
         write_en : in  std_logic;
-        data_in  : in  std_logic_vector(23 downto 0);
-        data_out : out std_logic_vector(23 downto 0));
+        data_in  : in  integer range 0 to 4095;
+        data_out : out integer range 0 to 4095);
 end lane_linemem;
 
 architecture behave of lane_linemem is
 
-  type ram_array is array (0 to 1279) of std_logic_vector(23 downto 0);
+  type ram_array is array (0 to 1279) of integer range 0 to 4095;
   signal ram : ram_array;
 
 begin

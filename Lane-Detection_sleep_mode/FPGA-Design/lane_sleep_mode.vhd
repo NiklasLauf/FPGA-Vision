@@ -1,15 +1,17 @@
--- lane.vhd
+-- lane_sleep_mode.vhd
 --
 -- top level
 --
 -- FPGA Vision Remote Lab http://h-brs.de/fpga-vision-lab
 -- (c) Marco Winzker, Hochschule Bonn-Rhein-Sieg, 03.01.2018
+-- Version Lane w/ sleep mode and luminance calculation 
+-- Version Author: Niklas Laufkoetter
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.NUMERIC_STD.all;
 
-entity lane is
+entity lane_sleep_mode is
   port (clk       : in  std_logic;                      -- input clock 74.25 MHz, video 720p
         reset_n   : in  std_logic;                      -- reset (invoked during configuration)
         enable_in : in  std_logic_vector(2 downto 0);   -- three slide switches
@@ -30,19 +32,21 @@ entity lane is
         --
         clk_o     : out std_logic;                      -- output clock (do not modify)
         led       : out std_logic_vector(2 downto 0));  -- not supported by remote lab
-end lane;
+end lane_sleep_mode;
 
-architecture behave of lane is
+architecture behave of lane_sleep_mode is
 
   -- input/output FFs
+  signal sobel_enable		  : std_logic;
+  signal line_count 		  : integer range 0 to 974 := 0;
   signal reset            : std_logic;
   signal enable           : std_logic_vector(2 downto 0);
   signal rgb_in, rgb_out  : std_logic_vector(23 downto 0);
   signal vs_0, hs_0, de_0 : std_logic;
   signal vs_1, hs_1, de_1 : std_logic;
+  
 
 begin
-
   process
   begin
     wait until rising_edge(clk);
@@ -54,16 +58,31 @@ begin
     vs_0   <= vs_in;
     hs_0   <= hs_in;
     de_0   <= de_in;
-    rgb_in <= r_in & g_in & b_in;
+    rgb_in <= r_in & g_in & b_in;	
+	  
+	  if (line_count > 300) then
+		 sobel_enable <= de_0;
+	  else
+		 sobel_enable <= '0';
+	  end if;
   end process;
-
+  
+  process
+  begin
+	 wait until rising_edge(hs_0);
+		line_count <= line_count +1;
+		if (vs_0 = '1') then
+			line_count <= 0;
+		end if;
+   end process;
+	
   -- signal processing
   sobel : entity work.lane_sobel
-    port map (clk      => clk,
-              reset    => reset,
-              de_in    => de_0,
-              data_in  => rgb_in,
-              data_out => rgb_out);
+	 port map (clk      => clk,
+				  reset    => reset,
+				  de_in    => sobel_enable,
+				  data_in  => rgb_in,
+				  data_out => rgb_out);
 
   -- delay control signals to match pipeline stages of signal processing
   control : entity work.lane_sync
@@ -105,3 +124,4 @@ begin
   led   <= "000";
 
 end behave;
+
