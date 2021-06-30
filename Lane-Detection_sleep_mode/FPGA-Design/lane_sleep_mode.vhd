@@ -106,15 +106,20 @@ begin
     de_out <= de_1;
     if (de_1 = '1') then
       -- active video
-      r_out <= rgb_out(23 downto 16);
-      g_out <= rgb_out(15 downto 8);
-      b_out <= rgb_out(7 downto 0);
-
+		if (sobel_enable = de_1) then
+			r_out <= rgb_out(23 downto 16);
+			g_out <= rgb_out(15 downto 8);
+			b_out <= rgb_out(7 downto 0);
+		else 
+			r_out <= (others => '1');
+			g_out <= (others => '1');
+			b_out <= (others => '1');
+		end if;
     else
       -- blanking, set output to black
-      r_out <= "00000000";
-      g_out <= "00000000";
-      b_out <= "00000000";
+		r_out <= (others => '0');
+		g_out <= (others => '0');
+		b_out <= (others => '0');
 
     end if;
   end process;

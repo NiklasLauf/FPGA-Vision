@@ -22,19 +22,19 @@ end lane_sobel;
 
 architecture behave of lane_sobel is
 
-  signal lum_out	: integer range 0 to 4095; 
+  signal lum_out	: std_logic_vector(9 downto 0);
   signal tap_lt, tap_ct, tap_rt,
          tap_lc, tap_cc, tap_rc,
-         tap_lb, tap_cb, tap_rb : integer range 0 to 4095;
+         tap_lb, tap_cb, tap_rb : std_logic_vector(9 downto 0);
             -- 3x3 image region
             --     Y->           (left)    (center)    (right)
             --   X      (top)    tap_lt     tap_ct     tap_rt
             --   |   (center)    tap_lc     tap_cc     tap_rc
             --   v   (bottom)    tap_lb     tap_cb     tap_rb
-  signal g_x_2, g_y_2           : integer range 0 to 268435456;
-  signal g_sum_2                : integer range 0 to 262143;
+  signal g_x_2, g_y_2           : integer range 0 to 16777216;
+  signal g_sum_2                : integer range 0 to 16384;
 
-  signal g2_limit   : std_logic_vector(12 downto 0);
+  signal g2_limit   : std_logic_vector(9 downto 0);
   signal lum_new    : std_logic_vector(7 downto 0);
 
 
@@ -109,19 +109,20 @@ begin
     wait until rising_edge(clk);
 	 	if (de_in = '1') then
 		 -- adding the values of horizontal and vertical sobel matrix
-		 g_sum_2 <= (g_x_2 + g_y_2)/8192;
+		 g_sum_2 <= (g_x_2 + g_y_2)/1024;
 
 		 -- limiting and invoking ROM for square-root
-		 if (g_sum_2 > 8191) then
+		 if (g_sum_2 > 1023) then
 			g2_limit <= (others => '1');
 		 else
-			g2_limit <= std_logic_vector(to_unsigned(g_sum_2, 13));
+			g2_limit <= std_logic_vector(to_unsigned(g_sum_2, 10));
 		 end if;
 	end if;
   end process;
 
-  square_root : entity work.lane_g_root_IP  -- 255 minus square-root of 8*g_sum_2
+  square_root : entity work.lane_g_root_10s  -- 255 minus square-root of 8*g_sum_2
     port map (clock   => clk,
+				  clken	 => de_in,
               address => g2_limit,
               q       => lum_new);
 

@@ -13,19 +13,19 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity lane_g_matrix is
   port ( clk       : in  std_logic;
-			enable       : in  std_logic;
+			enable    : in  std_logic;
          reset     : in  std_logic;
-         in_p1a    : in  integer range 0 to 4095;
-         in_p2     : in  integer range 0 to 4095;
-         in_p1b    : in  integer range 0 to 4095;
-         in_m1a    : in  integer range 0 to 4095;
-         in_m2     : in  integer range 0 to 4095;
-         in_m1b    : in  integer range 0 to 4095;
-         data_out  : out integer range 0 to 268435456);
+         in_p1a    : in  std_logic_vector(9 downto 0);
+         in_p2     : in  std_logic_vector(9 downto 0);
+         in_p1b    : in  std_logic_vector(9 downto 0);
+         in_m1a    : in  std_logic_vector(9 downto 0);
+         in_m2     : in  std_logic_vector(9 downto 0);
+         in_m1b    : in  std_logic_vector(9 downto 0);
+         data_out  : out integer range 0 to 16777216);
 end lane_g_matrix;
 
 architecture behave of lane_g_matrix is
-signal   sum          : integer range -16383 to 16383;
+signal   sum          : integer range -4096 to 4096;
 
 
 
@@ -39,11 +39,11 @@ begin
 		 --         |-1  0  1|      | 1  2  1|
 		 --         |-2  0  2|  or  | 0  0  0|
 		 --         |-1  0  1|      |-1 -2 -1|
-		 --sum   <=  to_integer(unsigned(in_p1a)) + 2*to_integer(unsigned(in_p2)) + to_integer(unsigned(in_p1b))
-		--			- to_integer(unsigned(in_m1a)) - 2*to_integer(unsigned(in_m2)) - to_integer(unsigned(in_m1b));
 
-		 sum	<= in_p1a + 2*in_p2 + in_p1b
-					- in_m1a - 2*in_m2 - in_m1b;
+
+		 sum   <=  to_integer(unsigned(in_p1a(9 downto 0))) + 2*to_integer(unsigned(in_p2(9 downto 0))) + to_integer(unsigned(in_p1b(9 downto 0)))
+					- to_integer(unsigned(in_m1a(9 downto 0))) - 2*to_integer(unsigned(in_m2(9 downto 0))) - to_integer(unsigned(in_m1b(9 downto 0)));
+
 		 -- square of sum
 		 data_out <= sum*sum;
 	 end if;
