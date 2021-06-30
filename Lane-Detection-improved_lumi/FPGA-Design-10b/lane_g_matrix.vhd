@@ -22,7 +22,7 @@ entity lane_g_matrix is
 end lane_g_matrix;
 
 architecture behave of lane_g_matrix is
-signal   sum          : integer range -16383 to 16383;
+signal   sum          : integer range -4096 to 4096;
 
 begin
 
@@ -34,10 +34,8 @@ begin
 		 --         |-2  0  2|  or  | 0  0  0|
 		 --         |-1  0  1|      |-1 -2 -1|
 		 sum   <=  to_integer(unsigned(in_p1a(9 downto 0))) + 2*to_integer(unsigned(in_p2(9 downto 0))) + to_integer(unsigned(in_p1b(9 downto 0)))
-					- to_integer(unsigned(in_m1a(9 downto 0))) - 2*to_integer(unsigned(in_m2(9 downto 0))) - to_integer(unsigned(in_m1b(9 downto 0)));
+			- to_integer(unsigned(in_m1a(9 downto 0))) - 2*to_integer(unsigned(in_m2(9 downto 0))) - to_integer(unsigned(in_m1b(9 downto 0)));
 
-		 --sum	<=  to_integer(unsigned(vec(in_p1a))) +  2*to_integer(unsigned(vec(in_p2))) +  to_integer(unsigned(vec(in_p1b)))
-		--			 -to_integer(unsigned(vec(in_m1a))) - 2*to_integer(unsigned(vec(in_m2))) -  to_integer(unsigned(vec(in_m1b)));
 		 -- square of sum
 		 data_out <= sum*sum;
 end process;

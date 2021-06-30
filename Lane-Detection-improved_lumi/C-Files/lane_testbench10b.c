@@ -75,25 +75,25 @@ bmp24_alloc(&image_out,x_size,y_size);
             lum_cb = 5*bmp24_r(pixel_cb) + 9*bmp24_g(pixel_cb) + 2*bmp24_b(pixel_cb);
             lum_rb = 5*bmp24_r(pixel_rb) + 9*bmp24_g(pixel_rb) + 2*bmp24_b(pixel_rb);
 
-            lum_lt = ((lum_lt >>4)& 0b0000001111111111);
-            lum_ct = ((lum_ct >>4)& 0b0000001111111111);
-            lum_rt = ((lum_rt >>4)& 0b0000001111111111);
-            lum_lc = ((lum_lc >>4)& 0b0000001111111111);
-            lum_rc = ((lum_rc >>4)& 0b0000001111111111);
-            lum_lb = ((lum_lb >>4)& 0b0000001111111111);
-            lum_cb = ((lum_cb >>4)& 0b0000001111111111);
-            lum_rb = ((lum_rb >>4)& 0b0000001111111111);
+            lum_lt = ((lum_lt >>6)& 0b0000001111111111);
+            lum_ct = ((lum_ct >>6)& 0b0000001111111111);
+            lum_rt = ((lum_rt >>6)& 0b0000001111111111);
+            lum_lc = ((lum_lc >>6)& 0b0000001111111111);
+            lum_rc = ((lum_rc >>6)& 0b0000001111111111);
+            lum_lb = ((lum_lb >>6)& 0b0000001111111111);
+            lum_cb = ((lum_cb >>6)& 0b0000001111111111);
+            lum_rb = ((lum_rb >>6)& 0b0000001111111111);
 
             sum_x = (lum_rt + 2*lum_rc + lum_rb) - (lum_lt + 2*lum_lc + lum_lb);
             sum_y = (lum_lt + 2*lum_ct + lum_rt) - (lum_lb + 2*lum_cb + lum_rb);
 
-            sum_x_2 = (sum_x*sum_x);
-            sum_y_2 = (sum_y*sum_y);
+            sum_x_2 = sum_x*sum_x;
+            sum_y_2 = sum_y*sum_y;
 
             g_sum_2 = (sum_x_2 + sum_y_2)/512;
 
 
-            if (g_sum_2 > 1024)
+            if (g_sum_2 > 1023)
 
                 g_limit = 0b0000001111111111;
             else
