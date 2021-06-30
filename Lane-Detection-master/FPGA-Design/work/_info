@@ -1,0 +1,320 @@
+m255
+K4
+z2
+!s11e MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA_lite/20.1
+Elane
+Z0 w1624808532
+Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 15
+Z4 dE:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design
+Z5 8E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane.vhd
+Z6 FE:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane.vhd
+l0
+Z7 L12 1
+V?2D^baCJAKE67fPGmKdnG1
+!s100 4EIiC^e_RGXRO_X3PCf7`3
+Z8 OV;C;2020.1;71
+32
+Z9 !s110 1624819784
+!i10b 1
+Z10 !s108 1624819784.000000
+Z11 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane.vhd|
+Z12 !s107 E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane.vhd|
+!i113 1
+Z13 o-work work -2002 -explicit
+Z14 tExplicit 1 CvgOpt 0
+Abehave
+Z15 DEx4 work 9 lane_sync 0 22 Tb7f783<UE4RGiHzA1C[21
+Z16 DEx4 work 10 lane_sobel 0 22 mDfo9Ja<ZKOcPQ`R_a@SX3
+R1
+R2
+R3
+Z17 DEx4 work 4 lane 0 22 ?2D^baCJAKE67fPGmKdnG1
+!i122 15
+l44
+Z18 L35 73
+Z19 V3m9e7d^z[IJ2E;2Ifk3TP3
+Z20 !s100 oM4X1hYJ=n`8SgA:T@1SE3
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Elane_g_matrix
+R0
+R1
+R2
+R3
+!i122 9
+R4
+Z21 8E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_g_matrix.vhd
+Z22 FE:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_g_matrix.vhd
+l0
+R7
+VRXgBX956jM:WS7`Wb3Ka21
+!s100 3Y0I<E9MLRLT9^LoL56nC2
+R8
+32
+Z23 !s110 1624819783
+!i10b 1
+Z24 !s108 1624819783.000000
+Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_g_matrix.vhd|
+Z26 !s107 E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_g_matrix.vhd|
+!i113 1
+R13
+R14
+Abehave
+R1
+R2
+R3
+Z27 DEx4 work 13 lane_g_matrix 0 22 RXgBX956jM:WS7`Wb3Ka21
+!i122 9
+l43
+L24 46
+Vle[Xm:WKO7VLf7m`j:CEX1
+!s100 WQUO=]2nXf=;2VU=kFZW;1
+R8
+32
+R23
+!i10b 1
+R24
+R25
+R26
+!i113 1
+R13
+R14
+Elane_g_root_ip
+R0
+Z28 DPx9 altera_mf 20 altera_mf_components 0 22 BN6nPmY:UEbXa[^5b@FTW1
+R2
+R3
+!i122 10
+R4
+Z29 8E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_g_root_IP.vhd
+Z30 FE:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_g_root_IP.vhd
+l0
+L43 1
+VbPILh?DY]SHMG1PHNmMZ`1
+!s100 3LJ<:hCZXLo>h0d7_2dWW1
+R8
+32
+R23
+!i10b 1
+R24
+Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_g_root_IP.vhd|
+Z32 !s107 E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_g_root_IP.vhd|
+!i113 1
+R13
+R14
+Asyn
+R28
+R2
+R3
+Z33 DEx4 work 14 lane_g_root_ip 0 22 bPILh?DY]SHMG1PHNmMZ`1
+!i122 10
+l57
+L53 33
+V3LjKOn`M;hHmKE;RU3cbc1
+!s100 SiFH=>0Vm=H_kL]D@FhJ60
+R8
+32
+R23
+!i10b 1
+R24
+R31
+R32
+!i113 1
+R13
+R14
+Elane_linemem
+R0
+R1
+R2
+R3
+!i122 11
+R4
+Z34 8E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_linemem.vhd
+Z35 FE:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_linemem.vhd
+l0
+R7
+VzfeW1O[2n_7coJ]T[IMFR2
+!s100 OKjFFZW55N3oD5Aa=NM_I1
+R8
+32
+R23
+!i10b 1
+R24
+Z36 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_linemem.vhd|
+Z37 !s107 E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_linemem.vhd|
+!i113 1
+R13
+R14
+Abehave
+R1
+R2
+R3
+Z38 DEx4 work 12 lane_linemem 0 22 zfeW1O[2n_7coJ]T[IMFR2
+!i122 11
+l25
+L20 32
+VnIjVnS]Tc5THS:ZR]E@X00
+!s100 48R<n[Yf?DZbl?kaEe6R;0
+R8
+32
+R23
+!i10b 1
+R24
+R36
+R37
+!i113 1
+R13
+R14
+Elane_sobel
+R0
+R1
+R2
+R3
+!i122 12
+R4
+Z39 8E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_sobel.vhd
+Z40 FE:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_sobel.vhd
+l0
+L13 1
+VmDfo9Ja<ZKOcPQ`R_a@SX3
+!s100 6;dC06ZgQ;0o92]B;Rl@V3
+R8
+32
+R9
+!i10b 1
+R24
+Z41 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_sobel.vhd|
+Z42 !s107 E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_sobel.vhd|
+!i113 1
+R13
+R14
+Abehave
+R28
+R33
+R27
+R38
+R1
+R2
+R3
+R16
+!i122 12
+l39
+L21 98
+VNIdDc=:Ge1]0V^G9k]EfA2
+!s100 7Af<RWl8NHBjW:MEnmm[[0
+R8
+32
+R9
+!i10b 1
+R24
+R41
+R42
+!i113 1
+R13
+R14
+Elane_sync
+R0
+R1
+R2
+R3
+!i122 13
+R4
+Z43 8E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_sync.vhd
+Z44 FE:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_sync.vhd
+l0
+Z45 L14 1
+VTb7f783<UE4RGiHzA1C[21
+!s100 TMGC65:BIXHfWY;X8]UUb2
+R8
+32
+R9
+!i10b 1
+R10
+Z46 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_sync.vhd|
+Z47 !s107 E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/lane_sync.vhd|
+!i113 1
+R13
+R14
+Abehave
+R1
+R2
+R3
+R15
+!i122 13
+l34
+L26 34
+V0WmQ@;YTO^Uee`=cOdSDH2
+!s100 NLDC6MJ[FF?ao:3=L;[R_0
+R8
+32
+R9
+!i10b 1
+R10
+R46
+R47
+!i113 1
+R13
+R14
+Esim_lane
+R0
+Z48 DPx4 ieee 16 std_logic_textio 0 22 ^l:n6VFdg74Q?CKDhjD]D3
+R2
+R3
+!i122 14
+R4
+Z49 8E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/sim_lane.vhd
+Z50 FE:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/sim_lane.vhd
+l0
+R45
+VgUBPQAaf]j:2U2>4^8FDH1
+!s100 l@FGiGH[b3<1L_UaL`O8e2
+R8
+32
+R9
+!i10b 1
+R10
+Z51 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/sim_lane.vhd|
+Z52 !s107 E:/Uni/SS2021/DIGI2/Praktikum/FPGA-Vision/Lane-Detection-master/FPGA-Design/sim_lane.vhd|
+!i113 1
+R13
+R14
+Asim
+R1
+R17
+R48
+R2
+R3
+DEx4 work 8 sim_lane 0 22 gUBPQAaf]j:2U2>4^8FDH1
+!i122 14
+l50
+L17 220
+Vf3Gh0UnaPCFlJGBIZ3<;21
+!s100 SI^N`f:OOMFboGE`H^Cih0
+R8
+32
+R9
+!i10b 1
+R10
+R51
+R52
+!i113 1
+R13
+R14

@@ -63,11 +63,11 @@ if( (y<0) || (y>=y_size) || (x<0) || (x>=x_size) )
      return( (long)0 );
 
 /* OPTION: access outside image area gives nearest pixel */
-/*
+
 if (y<0 )      y = 0;
 if (y>=y_size) y = y_size-1;
 if (x<0 )      x = 0;
-if (x>=x_size) x = x_size-1; */
+if (x>=x_size) x = x_size-1; 
 
 
 line_pos = image    + y;
