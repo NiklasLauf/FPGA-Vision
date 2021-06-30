@@ -38,4 +38,5 @@
 *.sft
 *.vo
 *.xrf
-Lane-Detection-improved_lumi/FPGA-Design/incremental_db/README
+~$*.*
+lane-Detection-improved_lumi/FPGA-Design/incremental_db/README
