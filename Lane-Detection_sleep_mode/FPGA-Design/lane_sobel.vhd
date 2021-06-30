@@ -32,7 +32,7 @@ architecture behave of lane_sobel is
             --   |   (center)    tap_lc     tap_cc     tap_rc
             --   v   (bottom)    tap_lb     tap_cb     tap_rb
   signal g_x_2, g_y_2           : integer range 0 to 16777216;
-  signal g_sum_2                : integer range 0 to 16384;
+  signal g_sum_2                : integer range 0 to 65536;
 
   signal g2_limit   : std_logic_vector(9 downto 0);
   signal lum_new    : std_logic_vector(7 downto 0);
@@ -109,7 +109,7 @@ begin
     wait until rising_edge(clk);
 	 	if (de_in = '1') then
 		 -- adding the values of horizontal and vertical sobel matrix
-		 g_sum_2 <= (g_x_2 + g_y_2)/1024;
+		 g_sum_2 <= (g_x_2 + g_y_2)/512;
 
 		 -- limiting and invoking ROM for square-root
 		 if (g_sum_2 > 1023) then

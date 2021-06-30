@@ -30,7 +30,7 @@ printf("=======\n\n");
 
 if (argc != 2)
   {
-  printf("USAGE: %s <input file base>\n",argv[0]);
+  printf("USAGE: %256s <input file base>\n",argv[0]);
   exit(1);
   }
 
@@ -48,7 +48,7 @@ bmp24_alloc(&image_out,1280,720);
 
     for (count=0;count<(1280*720);count++)
         {
-        status = fscanf(f_in,"%s\n",&c_line);
+        status = fscanf(f_in,"%256s\n",c_line);
         if ( status == -1)
             {
             printf("\nERROR: Unexpected End of file %s\n       Output image has invalid pixel\n\n\n",f_name);
@@ -56,10 +56,10 @@ bmp24_alloc(&image_out,1280,720);
             }
         r = strtol(c_line,NULL,16);
 
-        fscanf(f_in,"%s\n",&c_line);
+        fscanf(f_in,"%256s\n",c_line);
         g = strtol(c_line,NULL,16);
 
-        fscanf(f_in,"%s\n",&c_line);
+        fscanf(f_in,"%256s\n",c_line);
         b = strtol(c_line,NULL,16);
 
         /* write image */

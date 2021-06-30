@@ -208,7 +208,7 @@ begin
         hread(l_ex, r_ex);
         hread(l_ex, g_ex);
         hread(l_ex, b_ex);
-        if (x_pos >= 2 and y_pos >= 2) then
+        if (x_pos > 2 and y_pos > 302) and (x_pos<x_size-8 and y_pos<y_size-1) then
           -- check only if valid data
           if (r /= r_ex) or (g /= g_ex) or (b /= b_ex) then
             mismatch <= mismatch + 1;
